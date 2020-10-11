@@ -1,1 +1,3 @@
 # Mastermind
+
+<p align="center"> <img src="https://www.planttext.com/api/plantuml/img/ZP8nQyCm48Lt_GgXiU2Gb8ub1BlGeOIQT0WThz7L5JbBvYGJ0ldnjUN6TMqNikZGzzuzlK4R7u13NP8GmGH2kGKVa4jZjSm8l9TF1Wg6KeY1SfTeTxB9MggLaga3rlFglP8vmHbPT4C-NZfDPaxZ5ex_A2bZr7gNl4Q-uO4nPAxyC1Q2SLOC_BqhPrSvZtheYpMRRdCPdURwtil5OhLKip4pxE_YGxE7HTlgLkyBdiMaKsnwGrv2-1aQwmvzJM4cvrVhHWlsnbha7poyjA9gNam93aSHJvdKLN9PNulklqp04Kkf7gBOzPaHxHY-CjXYOirhhcX2TwZ7w1s9t6bCnGQjRdxmDm00"/> </p> 
