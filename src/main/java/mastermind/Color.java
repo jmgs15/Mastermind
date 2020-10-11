@@ -2,7 +2,7 @@ package mastermind;
 
 import utils.Console;
 
-enum CodePeg {
+enum Color {
 
 	RED_CODE('r'),
 	BLUE_CODE('b'),
@@ -14,10 +14,10 @@ enum CodePeg {
 
 	private char code;
 
-	private CodePeg() {
+	private Color() {
 	}
 	
-	private CodePeg(char code) {
+	private Color(char code) {
 		this.code = code;
 	}
 
@@ -26,20 +26,20 @@ enum CodePeg {
 	}
 	
 	static int length() {
-		return CodePeg.values().length;
+		return Color.values().length;
 	}
 	
-	static CodePeg get(char code) {
-		for (int i = 0; i < CodePeg.length(); i++) {
-			if (CodePeg.get(i).code == code) {
-				return CodePeg.get(i);
+	static Color get(char code) {
+		for (int i = 0; i < Color.length(); i++) {
+			if (Color.get(i).code == code) {
+				return Color.get(i);
 			}
 		}
 		return NULL_CODE;
 	}
 	
-	static CodePeg get(int position) {
-		return CodePeg.values()[position];
+	static Color get(int position) {
+		return Color.values()[position];
 	}
 	
 	@Override

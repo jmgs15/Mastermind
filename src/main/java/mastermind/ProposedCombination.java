@@ -7,21 +7,21 @@ public class ProposedCombination extends Combination {
 	void read(String message) {
 		Console console = Console.instance();
 		Error error;
-		String entryInitialsCodePegs;
+		String entryInitialsColors;
 		do {
-			entryInitialsCodePegs = console.readString(Message.PROPOSE_COMBINATION.toString());
-			error = this.checkEntryCodeError(entryInitialsCodePegs);
+			entryInitialsColors = console.readString(Message.PROPOSE_COMBINATION.toString());
+			error = this.checkEntryCodeError(entryInitialsColors);
 			error.writeln();
 		} while (error != Error.NULL_ERROR);
-		this.putCodePegs(entryInitialsCodePegs);
+		this.putCodePegs(entryInitialsColors);
 	}
 	
-	Error checkEntryCodeError(String initialsCodePegs) {
-		if (initialsCodePegs.length() != Combination.POSITIONS) {
+	Error checkEntryCodeError(String initialsColors) {
+		if (initialsColors.length() != Combination.POSITIONS) {
 			return Error.WRONG_LENGTH;
 		}
-		for (int i = 0; i < initialsCodePegs.length(); i++) {
-			if (CodePeg.get(initialsCodePegs.charAt(i)) == CodePeg.NULL_CODE) {
+		for (int i = 0; i < initialsColors.length(); i++) {
+			if (Color.get(initialsColors.charAt(i)) == Color.NULL_CODE) {
 				return Error.WRONG_COLOURS;
 			}
 		}
@@ -29,8 +29,8 @@ public class ProposedCombination extends Combination {
 	}
 	
 	void write() {
-		for (int i = 0; i < this.codePegs.length; i++) {
-			this.codePegs[i].write();
+		for (int i = 0; i < this.colors.length; i++) {
+			this.colors[i].write();
 		}
 	}
 }

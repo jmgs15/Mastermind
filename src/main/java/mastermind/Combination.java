@@ -4,15 +4,15 @@ public class Combination {
 	
 	static final int POSITIONS = 4;
 	
-	protected CodePeg[] codePegs;
+	protected Color[] colors;
 	
 	Combination() {
-		codePegs = new CodePeg[POSITIONS];
+		colors = new Color[POSITIONS];
 	}
 	
-	void putCodePegs(String initialsCodePegs) {
-		for (int i = 0; i < initialsCodePegs.length(); i++) {
-			this.codePegs[i] = CodePeg.get(initialsCodePegs.charAt(i));
+	void putCodePegs(String initialsColors) {
+		for (int i = 0; i < initialsColors.length(); i++) {
+			this.colors[i] = Color.get(initialsColors.charAt(i));
 		}
 	}
 }

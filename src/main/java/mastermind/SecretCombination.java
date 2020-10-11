@@ -7,8 +7,8 @@ public class SecretCombination extends Combination {
 	SecretCombination() {
 		Random random = new Random(System.currentTimeMillis());
 		
-		for (int i = 0; i < this.codePegs.length; i++) {
-			this.codePegs[i] = CodePeg.get(random.nextInt(CodePeg.values().length - 1));
+		for (int i = 0; i < this.colors.length; i++) {
+			this.colors[i] = Color.get(random.nextInt(Color.values().length - 1));
 		}
 	}
 	
@@ -18,10 +18,10 @@ public class SecretCombination extends Combination {
 	
 	Result resolveCombination(ProposedCombination proposedCombination) {
 		Result result = new Result();
-		for (int i = 0; i < proposedCombination.codePegs.length; i++) {
-			if (this.containsAtPosition(proposedCombination.codePegs[i], i)) {
+		for (int i = 0; i < proposedCombination.colors.length; i++) {
+			if (this.containsAtPosition(proposedCombination.colors[i], i)) {
 				result.addBlack();
-			} else if (this.containsAtAnyOtherPosition(proposedCombination.codePegs[i], i)) {
+			} else if (this.containsAtAnyOtherPosition(proposedCombination.colors[i], i)) {
 				result.addWhite();
 			}
 		}
@@ -29,13 +29,13 @@ public class SecretCombination extends Combination {
 	}
 	
 	
-	private boolean containsAtPosition(CodePeg code, int position) {
-		return this.codePegs[position] == code;
+	private boolean containsAtPosition(Color code, int position) {
+		return this.colors[position] == code;
 	}
 	
-	private boolean containsAtAnyOtherPosition(CodePeg code, int position) {
-		for (int i = 0; i < this.codePegs.length; i++) {
-			if (i != position && this.codePegs[i] == code) {
+	private boolean containsAtAnyOtherPosition(Color code, int position) {
+		for (int i = 0; i < this.colors.length; i++) {
+			if (i != position && this.colors[i] == code) {
 				return true;
 			}
 		}

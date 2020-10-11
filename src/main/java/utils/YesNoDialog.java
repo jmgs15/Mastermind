@@ -4,9 +4,6 @@ public class YesNoDialog {
 
 	private static final char AFFIRMATIVE = 'y';
 	private static final char NEGATIVE = 'n';
-	private static final String SUFFIX = "? (" +
-		YesNoDialog.AFFIRMATIVE+"/" + 
-		YesNoDialog.NEGATIVE+"): ";
 	private static final String MESSAGE = "The value must be '" + 
 		YesNoDialog.AFFIRMATIVE + "' or '" + 
 		YesNoDialog.NEGATIVE + "'";
@@ -19,7 +16,7 @@ public class YesNoDialog {
 		boolean error;
 		do {
 			console.write(message);
-			this.answer = console.readChar(YesNoDialog.SUFFIX);
+			this.answer = console.readChar("");
 			error = !this.isAfirmative() && !this.isNegative();
 			if (error) {
 				console.writeln(YesNoDialog.MESSAGE);
