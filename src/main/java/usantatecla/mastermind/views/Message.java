@@ -1,4 +1,4 @@
-package usantatecla.mastermind;
+package usantatecla.mastermind.views;
 
 import usantatecla.utils.Console;
 

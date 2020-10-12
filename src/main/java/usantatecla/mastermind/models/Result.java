@@ -1,6 +1,6 @@
-package usantatecla.mastermind;
+package usantatecla.mastermind.models;
 
-class Result {
+public class Result {
 
 	public static final int WIDTH = 4;
 	private int blacks = 0;
@@ -17,9 +17,12 @@ class Result {
 	boolean isWinner() {
 		return this.blacks == Result.WIDTH;
 	}
-
-	void writeln() {
-		Message.RESULT.writeln(this.blacks, this.whites);
+	
+	public int getBlacks() {
+		return this.blacks;
 	}
 	
+	public int getWhites() {
+		return this.whites;
+	}
 }
