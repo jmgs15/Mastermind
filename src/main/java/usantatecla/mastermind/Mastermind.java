@@ -1,40 +1,25 @@
 package usantatecla.mastermind;
 
-import usantatecla.utils.YesNoDialog;
+import usantatecla.mastermind.models.Game;
+import usantatecla.mastermind.views.View;
 
 public class Mastermind {
 
-	private Board board;
+	private Game game;
 	
-	public void play() {
-		do {
-			this.playGame();
-		} while (this.isResumedGame());
+	private View view;
+
+	private Mastermind() {
+		this.game = new Game();
+		this.view = new View(this.game);
 	}
 
-	private void playGame(){
-		Message.TITLE.writeln();
-		this.board = new Board();
-		this.board.writeln();
-		do {
-			ProposedCombination proposedCombination = new ProposedCombination();
-			proposedCombination.read();
-			this.board.add(proposedCombination);
-			this.board.writeln();
-		} while (!this.board.isFinished());
-		Message message = Message.LOOSER;
-		if (this.board.isWinner()){
-			message = Message.WINNER;
-		}
-		message.writeln();
+	private void play() {
+		this.view.interact();
 	}
-
-	private boolean isResumedGame() {
-		return new YesNoDialog().read(Message.RESUME.toString());
-	}
-
+	
 	public static void main(String[] args) {
 		new Mastermind().play();
-	}
+	}	
 
 }
