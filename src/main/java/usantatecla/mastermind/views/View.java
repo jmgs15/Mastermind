@@ -9,7 +9,6 @@ public abstract class View {
 	public View(Game game) {
 		this.game = game;
 	}
-	
 
 	public void interact() {
 		do {
