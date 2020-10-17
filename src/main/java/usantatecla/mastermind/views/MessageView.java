@@ -2,7 +2,7 @@ package usantatecla.mastermind.views;
 
 import usantatecla.utils.Console;
 
-enum MessageView {
+public enum MessageView {
 	ATTEMPTS("#attempts attempt(s): "),
 	SECRET("*"),
 	RESUME("Do you want to continue"),
@@ -20,19 +20,19 @@ enum MessageView {
 		this.message = message;
 	}
 
-	void write() {
+	public void write() {
 		this.console.write(this.message);
 	}
 
-	void writeln() {
+	public void writeln() {
 		this.console.writeln(this.message);
 	}
 
-	void writeln(int attempts) {
+	public void writeln(int attempts) {
 		this.console.writeln(this.message.replaceAll("#attempts", "" + attempts));
 	}
 
-	void writeln(int blacks, int whites) {
+	public void writeln(int blacks, int whites) {
 		this.console.writeln(this.message.replaceFirst("#blacks", "" + blacks).replaceFirst("#whites", "" + whites));
 	}
 
