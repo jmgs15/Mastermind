@@ -1,9 +1,12 @@
-package usantatecla.mastermind.models;
+package usantatecla.mastermind;
 
-import java.util.Collections;
 import java.util.Random;
 
-public class SecretCombination extends Combination {
+import usantatecla.utils.Console;
+
+import java.util.Collections;
+
+class SecretCombination extends Combination {
 
 	SecretCombination() {
 		super();
@@ -31,6 +34,14 @@ public class SecretCombination extends Combination {
 			}
 		}
 		return new Result(blacks, whites - blacks);
+	}
+
+	void writeln() {
+		Console.instance().write("**** - ");
+		for (Color color : this.colors) {
+			color.write();
+		}
+		Console.instance().writeln();
 	}
 
 }
