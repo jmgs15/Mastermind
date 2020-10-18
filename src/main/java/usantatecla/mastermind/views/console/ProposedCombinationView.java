@@ -1,55 +1,42 @@
 package usantatecla.mastermind.views.console;
 
+import usantatecla.mastermind.controllers.ProposalController;
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
-import usantatecla.mastermind.models.Combination;
 import usantatecla.mastermind.models.ProposedCombination;
-import usantatecla.mastermind.views.ColorView;
 import usantatecla.mastermind.views.ErrorView;
 import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
 class ProposedCombinationView extends WithConsoleView {
 	
-	private ProposedCombination proposedCombination;
+	private ProposalController proposalController;
 
-	ProposedCombinationView(ProposedCombination proposedCombination) {
-		this.proposedCombination = proposedCombination;
+	ProposedCombinationView(ProposalController proposalController) {
+		this.proposalController = proposalController;
 	}
 
-	void write() {
-		for (Color color: this.proposedCombination.getColors()) {
-			new ColorView(color).write();
+	void write(int position) {
+		for (Color color: this.proposalController.getColors(position)) {
+			new ColorView().write(color);
 		}
 	}
 
-	void read() {
+	ProposedCombination read() {
+		ProposedCombination proposedCombination = null;
 		Error error;
 		do {
 			error = null;
 			MessageView.PROPOSED_COMBINATION.write();
 			String characters = this.console.readString();
-			if (characters.length() > Combination.getWidth()) {
-				error = Error.WRONG_LENGTH;
-			} else {
-				for (int i = 0; i < characters.length(); i++) {
-					Color color = ColorView.getInstance(characters.charAt(i));
-					if (color == null) {
-						error = Error.WRONG_CHARACTERS;
-					} else {
-						if (this.proposedCombination.getColors().contains(color)) {
-							error = Error.DUPLICATED;
-						} else {
-							this.proposedCombination.getColors().add(color);
-						}
-					}
-				}
-			}
+			error = proposalController.isProposedCombinationValid(characters);
 			if (error != null) {
 				new ErrorView(error).writeln();
-				this.proposedCombination.getColors().clear();
+			} else {
+				proposedCombination = proposalController.getProposedCombination(characters);
 			}
 		} while (error != null);
+		return proposedCombination;
 	}
 
 }

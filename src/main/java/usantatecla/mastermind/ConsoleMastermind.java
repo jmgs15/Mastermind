@@ -1,6 +1,7 @@
 package usantatecla.mastermind;
 
-import usantatecla.mastermind.models.Game;
+import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.views.console.View;
 
 public class ConsoleMastermind extends Mastermind {
@@ -10,8 +11,8 @@ public class ConsoleMastermind extends Mastermind {
 	}
 
 	@Override
-	View createView(Game game) {
-		return new View(game);
+	View createView(ProposalController proposalController, ResumeController resumeController) {
+		return new View(proposalController, resumeController);
 	}	
 
 }

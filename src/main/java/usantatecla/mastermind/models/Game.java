@@ -47,9 +47,21 @@ public class Game {
 	public ProposedCombination getProposedCombination(int position) {
 		return this.proposedCombinations.get(position);
 	}
+	
+	public List<Color> getColors(int position) {
+		return this.getProposedCombination(position).getColors();
+	}
 
 	public Result getResult(int position) {
 		return this.results.get(position);
 	}
 
+	public int getBlacks(int position) {
+		return this.getResult(position).getBlacks();
+	}
+
+	public int getWhites(int position) {
+		return this.getResult(position).getBlacks();
+	}
+	
 }

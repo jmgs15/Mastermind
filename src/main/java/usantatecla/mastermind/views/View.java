@@ -1,13 +1,16 @@
 package usantatecla.mastermind.views;
 
-import usantatecla.mastermind.models.Game;
+import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.ResumeController;
 
 public abstract class View {
 
-	protected Game game;
+	protected ProposalController proposalController;
+	protected ResumeController resumeController;
 
-	public View(Game game) {
-		this.game = game;
+	public View(ProposalController proposalController, ResumeController resumeController) {
+		this.proposalController = proposalController;
+		this.resumeController = resumeController;
 	}
 
 	public void interact() {
