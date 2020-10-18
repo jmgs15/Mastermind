@@ -13,4 +13,9 @@ public class ResumeController extends Controller {
 		this.game.clear();
 		this.state.reset();
 	}
+
+	@Override
+	public void accept(ControllersVisitor controllersVisitor) {
+		controllersVisitor.visit(this);
+	}
 }

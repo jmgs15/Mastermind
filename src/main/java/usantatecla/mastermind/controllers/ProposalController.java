@@ -63,4 +63,9 @@ public class ProposalController extends Controller {
 	public int getSecretCombinationWidth() {
 		return this.game.getSecretCombinationWidth();
 	}
+
+	@Override
+	public void accept(ControllersVisitor controllersVisitor) {
+		controllersVisitor.visit(this);
+	}
 }
