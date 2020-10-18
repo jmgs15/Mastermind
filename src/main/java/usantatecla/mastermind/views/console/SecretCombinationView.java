@@ -1,20 +1,20 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.Logic;
 import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
 class SecretCombinationView extends WithConsoleView {
 
-	ProposalController proposalController;
+	private Logic logic;
 	
-	SecretCombinationView(ProposalController proposalController) {
+	SecretCombinationView(Logic logic) {
 		super();
-		this.proposalController = proposalController;
+		this.logic = logic;
 	}
 
 	void writeln() {
-		for (int i = 0; i < this.proposalController.getSecretCombinationWidth(); i++) {
+		for (int i = 0; i < this.logic.getSecretCombinationWidth(); i++) {
 			MessageView.SECRET.write();
 		}
 		this.console.writeln();

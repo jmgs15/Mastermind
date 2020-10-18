@@ -1,15 +1,14 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
-import usantatecla.mastermind.controllers.ResumeController;
+import usantatecla.mastermind.controllers.Logic;
 
 public class View extends usantatecla.mastermind.views.View {
 
 	PlayView playView;
 	
-	public View (ProposalController proposalController, ResumeController resumeController) {
-		super(proposalController, resumeController);
-		this.playView = new PlayView(proposalController, resumeController);
+	public View (Logic logic) {
+		super(logic);
+		this.playView = new PlayView(logic);
 	}
 	
 	@Override

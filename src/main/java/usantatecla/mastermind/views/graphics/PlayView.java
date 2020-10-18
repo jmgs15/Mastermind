@@ -1,16 +1,13 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
-import usantatecla.mastermind.controllers.ResumeController;
+import usantatecla.mastermind.controllers.Logic;
 
 public class PlayView {
 
-	private ProposalController proposalController;
-	private ResumeController resumeController;
+	private Logic logic;
 	
-	public PlayView(ProposalController proposalController, ResumeController resumeController) {
-		this.proposalController = proposalController;
-		this.resumeController = resumeController;
+	public PlayView(Logic logic) {
+		this.logic = logic;
 	}
 	
 	public void start() {
