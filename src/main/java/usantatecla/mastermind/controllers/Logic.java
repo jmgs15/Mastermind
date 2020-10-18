@@ -1,65 +1,29 @@
 package usantatecla.mastermind.controllers;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
-import usantatecla.mastermind.models.Color;
-import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.ProposedCombination;
+import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.StateValue;
 
 public class Logic {
 
-	private Game game;
-	private ProposalController proposalController;
-	private ResumeController resumeController;
-	
+	private State state;
+    private Game game;
+	private Map<StateValue, Controller> controllers;
+
 	public Logic() {
+		this.state = new State();
 		this.game = new Game();
-		this.proposalController = new ProposalController(this.game);
-		this.resumeController = new ResumeController(this.game);
-	}
-	
-	public void clearGame() {
-		this.resumeController.clearGame();
-	}
-	
-	public int getBlacks(int position) {
-		return this.proposalController.getBlacks(position);
-	}
-	
-	public int getWhites(int position) {
-		return this.proposalController.getWhites(position);
-	}
-	
-	public List<Color> getColors(int position) {
-		return this.proposalController.getColors(position);
-	}
-	
-	public boolean isLooser() {
-		return this.proposalController.isLooser();
-	}
-	
-	public boolean isWinner() {
-		return this.proposalController.isWinner();
-	}
-	
-	public void addProposedCombination(ProposedCombination proposedCombination) {
-		this.proposalController.addProposedCombination(proposedCombination);
-	}
-	
-	public int getAttempts() {
-		return this.proposalController.getAttempts();
-	}
-	
-	public Error isProposedCombinationValid(String characters) {
-		return this.proposalController.isProposedCombinationValid(characters);
-	}
-	
-	public ProposedCombination getProposedCombination(String characters) {
-		return this.proposalController.getProposedCombination(characters);
+		this.controllers = new HashMap<StateValue, Controller>();
+		this.controllers.put(StateValue.INITIAL, new ProposalController(this.game, this.state));
+		this.controllers.put(StateValue.RESUME, new ResumeController(this.game, this.state));
+		this.controllers.put(StateValue.EXIT, null);
 	}
 
-	public int getSecretCombinationWidth() {
-		return this.proposalController.getSecretCombinationWidth();
+	public Controller getController() {
+		return this.controllers.get(this.state.getValueState());
 	}
+    
 }

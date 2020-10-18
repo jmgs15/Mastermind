@@ -1,27 +1,16 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.Logic;
+import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.ResumeController;
 
 public class PlayView {
-
-	private Logic logic;
 	
-	public PlayView(Logic logic) {
-		this.logic = logic;
-	}
-	
-	public void start() {
+	public void interact(ProposalController proposalController) {
 		//START THE GAME
 	}
 
-	public boolean play() {
+	public void interact(ResumeController resumeController) {
 		//PLAY THE GAME
-		return false;
-	}
-
-	public boolean isNewGame() {
-		//DO YOU WANT TO PLAY AGAIN??
-		return false;
 	}
 
 }

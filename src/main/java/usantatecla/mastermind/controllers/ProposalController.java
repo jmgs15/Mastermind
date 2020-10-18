@@ -6,13 +6,14 @@ import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.ProposedCombination;
+import usantatecla.mastermind.models.State;
 
 public class ProposalController extends Controller {
 	
 	public static final char[] INITIALS = {'r', 'b', 'y', 'g', 'o', 'p'};
 
-	public ProposalController(Game game) {
-		super(game);
+	public ProposalController(Game game, State state) {
+		super(game, state);
 	}
 	
 	public int getBlacks(int position) {
@@ -28,11 +29,19 @@ public class ProposalController extends Controller {
 	}
 	
 	public boolean isLooser() {
-		return this.game.isLooser();
+		boolean isLooser = this.game.isLooser();
+		if (isLooser) {
+			this.state.next();
+		}
+		return isLooser;
 	}
 	
 	public boolean isWinner() {
-		return this.game.isWinner();
+		boolean isWinner = this.game.isWinner(); 
+		if (isWinner) {
+			this.state.next();
+		}
+		return isWinner;
 	}
 	
 	public void addProposedCombination(ProposedCombination proposedCombination) {

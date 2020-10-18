@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.Logic;
+import usantatecla.mastermind.controllers.ProposalController;
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.ProposedCombination;
@@ -10,14 +10,14 @@ import usantatecla.utils.WithConsoleView;
 
 class ProposedCombinationView extends WithConsoleView {
 	
-	private Logic logic;
+	private ProposalController proposalController;
 
-	ProposedCombinationView(Logic logic) {
-		this.logic = logic;
+	ProposedCombinationView(ProposalController proposalController) {
+		this.proposalController = proposalController;
 	}
 
 	void write(int position) {
-		for (Color color: this.logic.getColors(position)) {
+		for (Color color: this.proposalController.getColors(position)) {
 			new ColorView().write(color);
 		}
 	}
@@ -29,11 +29,11 @@ class ProposedCombinationView extends WithConsoleView {
 			error = null;
 			MessageView.PROPOSED_COMBINATION.write();
 			String characters = this.console.readString();
-			error = this.logic.isProposedCombinationValid(characters);
+			error = this.proposalController.isProposedCombinationValid(characters);
 			if (error != null) {
 				new ErrorView(error).writeln();
 			} else {
-				proposedCombination = this.logic.getProposedCombination(characters);
+				proposedCombination = this.proposalController.getProposedCombination(characters);
 			}
 		} while (error != null);
 		return proposedCombination;
