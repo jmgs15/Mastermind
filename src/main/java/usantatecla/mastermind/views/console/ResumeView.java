@@ -16,7 +16,7 @@ class ResumeView {
 		MessageView.RESUME.write();
 		boolean newGame = new YesNoDialog().read();
 		if (newGame) {
-			this.resumeController.clearGame();;
+			this.resumeController.clearGame();
 		}
 		return newGame;
 	}

@@ -51,4 +51,7 @@ public class ProposalController extends Controller {
 		return ProposedCombination.getProposedCombination(characters);
 	}
 
+	public int getSecretCombinationWidth() {
+		return this.game.getSecretCombinationWidth();
+	}
 }

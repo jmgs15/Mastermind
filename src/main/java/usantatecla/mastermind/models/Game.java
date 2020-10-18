@@ -64,4 +64,7 @@ public class Game {
 		return this.getResult(position).getBlacks();
 	}
 	
+	public int getSecretCombinationWidth() {
+		return Combination.getWidth();
+	}
 }

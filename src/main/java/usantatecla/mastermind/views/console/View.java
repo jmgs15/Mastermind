@@ -11,7 +11,7 @@ public class View extends usantatecla.mastermind.views.View {
 	
 	public View(ProposalController proposalController, ResumeController resumeController) {
 		super(proposalController, resumeController);
-		this.startView = new StartView();
+		this.startView = new StartView(proposalController);
 		this.proposalView = new ProposalView(proposalController);
 		this.resumeView = new ResumeView(resumeController);
 	}

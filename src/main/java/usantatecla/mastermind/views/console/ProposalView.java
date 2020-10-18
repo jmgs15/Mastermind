@@ -11,7 +11,7 @@ class ProposalView extends WithConsoleView {
 
 	ProposalView(ProposalController proposalController) {
 		this.proposalController = proposalController;
-		this.secretCombinationView = new SecretCombinationView();
+		this.secretCombinationView = new SecretCombinationView(proposalController);
 	}
 
 	boolean interact() {
