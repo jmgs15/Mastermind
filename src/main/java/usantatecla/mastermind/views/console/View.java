@@ -2,6 +2,7 @@ package usantatecla.mastermind.views.console;
 
 import usantatecla.mastermind.controllers.ProposalController;
 import usantatecla.mastermind.controllers.ResumeController;
+import usantatecla.mastermind.controllers.StartController;
 
 public class View extends usantatecla.mastermind.views.View {
 	
@@ -14,10 +15,14 @@ public class View extends usantatecla.mastermind.views.View {
 		this.proposalView = new ProposalView();
 		this.resumeView = new ResumeView();
 	}
+	
+	@Override
+	public void visit(StartController startController) {
+		this.startView.interact();
+	}
 
 	@Override
 	public void visit(ProposalController proposalController) {
-		this.startView.interact(proposalController);
 		boolean finished;
 		do {
 			finished = this.proposalView.interact(proposalController);

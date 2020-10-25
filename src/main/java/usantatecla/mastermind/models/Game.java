@@ -67,4 +67,12 @@ public class Game {
 	public int getSecretCombinationWidth() {
 		return Combination.getWidth();
 	}
+	
+	public Error isProposedCombinationValid(String characters) {
+		return new ProposedCombination().isProposedCombinationValid(characters);
+	}
+	
+	public ProposedCombination getProposedCombination(String characters) {
+		return new ProposedCombination().getProposedCombination(characters);
+	}
 }

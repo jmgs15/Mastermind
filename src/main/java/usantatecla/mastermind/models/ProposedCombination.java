@@ -21,7 +21,7 @@ public class ProposedCombination extends Combination {
 		return this.colors;
 	}
 	
-	public static Error isProposedCombinationValid(String characters) {
+	public Error isProposedCombinationValid(String characters) {
 		Error error = null;
 		ProposedCombination proposedCombination = new ProposedCombination();
 		if (characters.length() > Combination.getWidth()) {
@@ -43,7 +43,7 @@ public class ProposedCombination extends Combination {
 		return error;
 	}
 	
-	public static ProposedCombination getProposedCombination(String characters) {
+	public ProposedCombination getProposedCombination(String characters) {
 		ProposedCombination proposedCombination = new ProposedCombination();
 		for (int i = 0; i < characters.length(); i++) {
 			Color color = Color.getInstance(characters.charAt(i));

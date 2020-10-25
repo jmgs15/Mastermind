@@ -13,5 +13,10 @@ public abstract class Controller {
 		this.state = state;
 	}
 	
+	Controller(Controller controller) {
+		this.game = controller.game;
+		this.state = controller.state;
+	}
+	
 	public abstract void accept(ControllersVisitor controllersVisitor);
 }

@@ -53,11 +53,11 @@ public class ProposalController extends Controller {
 	}
 	
 	public Error isProposedCombinationValid(String characters) {
-		return ProposedCombination.isProposedCombinationValid(characters);
+		return this.game.isProposedCombinationValid(characters);
 	}
 	
 	public ProposedCombination getProposedCombination(String characters) {
-		return ProposedCombination.getProposedCombination(characters);
+		return this.game.getProposedCombination(characters);
 	}
 
 	public int getSecretCombinationWidth() {
