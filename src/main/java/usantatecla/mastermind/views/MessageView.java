@@ -8,32 +8,37 @@ public enum MessageView {
 	RESUME("Do you want to continue"),
 	RESULT(" --> #blacks blacks and #whites whites"),
 	PROPOSED_COMBINATION("Propose a combination: "),
+	ACTION_COMMAND("Insert new combination"), 
+	UNDO_COMMAND("Undo previous action"), 
+	REDO_COMMAND("Redo previous action"),
 	TITLE("----- MASTERMIND -----"),
 	WINNER("You've won!!! ;-)"),
 	LOOSER("You've lost!!! :-(");
 
 	private String message;
 	
-	private Console console;
-	
 	private MessageView(String message) {
 		this.message = message;
 	}
+	
+	public String getMessage() {
+		return this.message;
+	}
 
 	public void write() {
-		this.console.write(this.message);
+		Console.instance().write(this.message);
 	}
 
 	public void writeln() {
-		this.console.writeln(this.message);
+		Console.instance().writeln(this.message);
 	}
 
 	public void writeln(int attempts) {
-		this.console.writeln(this.message.replaceAll("#attempts", "" + attempts));
+		Console.instance().writeln(this.message.replaceAll("#attempts", "" + attempts));
 	}
 
 	public void writeln(int blacks, int whites) {
-		this.console.writeln(this.message.replaceFirst("#blacks", "" + blacks).replaceFirst("#whites", "" + whites));
+		Console.instance().writeln(this.message.replaceFirst("#blacks", "" + blacks).replaceFirst("#whites", "" + whites));
 	}
 
 }

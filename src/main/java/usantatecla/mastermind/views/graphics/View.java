@@ -1,10 +1,12 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.AcceptorController;
+import usantatecla.mastermind.controllers.ControllerVisitor;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 
-public class View extends usantatecla.mastermind.views.View {
+public class View extends usantatecla.mastermind.views.View implements ControllerVisitor {
 
 	PlayView playView;
 	
@@ -18,13 +20,19 @@ public class View extends usantatecla.mastermind.views.View {
 	}
 
 	@Override
-	public void visit(ProposalController proposalController) {
+	public void visit(PlayController proposalController) {
 		this.playView.interact(proposalController);
 	}
 
 	@Override
 	public void visit(ResumeController resumeController) {
 		this.playView.interact(resumeController);
+	}
+
+	@Override
+	public void interact(AcceptorController acceptorController) {
+		acceptorController.accept(this);
+		
 	}
 	
 }

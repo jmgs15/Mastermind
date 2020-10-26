@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.graphics;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.controllers.ResumeController;
 import usantatecla.mastermind.controllers.StartController;
 
@@ -10,7 +10,7 @@ public class PlayView {
 		//START THE GAME
 	}
 	
-	public void interact(ProposalController proposalController) {
+	public void interact(PlayController proposalController) {
 		//PROPOSE COMBINATION
 	}
 

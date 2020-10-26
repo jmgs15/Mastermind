@@ -1,21 +1,24 @@
 package usantatecla.mastermind.controllers;
 
-import usantatecla.mastermind.models.Game;
-import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.models.Session;
 
-public class ResumeController extends Controller {
+public class ResumeController extends Controller implements AcceptorController {
 
-	public ResumeController(Game game, State state) {
-		super(game, state);
+	public ResumeController(Session session) {
+		super(session);
 	}
 	
-	public void clearGame() {
-		this.game.clear();
-		this.state.reset();
+	public void resume(boolean isResumed) {
+		if (isResumed) {
+			this.session.newGame();
+		} else {
+			this.session.nextState();
+		}
+		
 	}
 
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
+	public void accept(ControllerVisitor controllersVisitor) {
 		controllersVisitor.visit(this);
 	}
 }

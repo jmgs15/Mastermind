@@ -1,6 +1,6 @@
 package usantatecla.mastermind.models;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 
 public enum Color {
 	RED, 
@@ -15,8 +15,8 @@ public enum Color {
 	}
 	
 	public static Color getInstance(char character) {
-		for (int i = 0; i < ProposalController.INITIALS.length; i++) {
-			if (ProposalController.INITIALS[i] == character) {
+		for (int i = 0; i < PlayController.INITIALS.length; i++) {
+			if (PlayController.INITIALS[i] == character) {
 				return Color.values()[i];
 			}
 		}

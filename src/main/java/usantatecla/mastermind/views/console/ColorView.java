@@ -1,13 +1,13 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.models.Color;
 import usantatecla.utils.WithConsoleView;
 
 public class ColorView extends WithConsoleView{
 	
 	public void write(Color color) {
-		this.console.write(ProposalController.INITIALS[color.ordinal()]);
+		this.console.write(PlayController.INITIALS[color.ordinal()]);
 	}
 
 }

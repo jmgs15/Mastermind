@@ -1,6 +1,6 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.ProposedCombination;
@@ -10,9 +10,9 @@ import usantatecla.utils.WithConsoleView;
 
 class ProposedCombinationView extends WithConsoleView {
 	
-	private ProposalController proposalController;
+	private PlayController proposalController;
 
-	ProposedCombinationView(ProposalController proposalController) {
+	ProposedCombinationView(PlayController proposalController) {
 		this.proposalController = proposalController;
 	}
 

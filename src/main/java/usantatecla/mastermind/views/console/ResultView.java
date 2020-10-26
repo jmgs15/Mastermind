@@ -1,14 +1,14 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
+import usantatecla.mastermind.controllers.PlayController;
 import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
 class ResultView extends WithConsoleView {
 	
-	private ProposalController proposalController;
+	private PlayController proposalController;
 
-	public ResultView(ProposalController proposalController) {
+	public ResultView(PlayController proposalController) {
 		this.proposalController = proposalController;
 	}
 
