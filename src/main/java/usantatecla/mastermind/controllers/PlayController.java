@@ -19,9 +19,11 @@ public class PlayController extends AcceptorController {
 
     public PlayController(Session session, TCPIP tcpip) {
 		super(session, tcpip);
-		this.actionController = new ActionController(session);
-		this.undoController = new UndoController(session);
-		this.redoController = new RedoController(session);
+		if (this.tcpip == null) {
+			this.actionController = new ActionController(session);
+			this.undoController = new UndoController(session);
+			this.redoController = new RedoController(session);
+		}
 	}
 
 	public int getBlacks(int position) {
@@ -50,7 +52,6 @@ public class PlayController extends AcceptorController {
 			this.actionController.addProposedCombination(proposedCombination);
 			this.actionController.addMemento();
 		} else {
-			
 			this.tcpip.send(FrameType.ADD_COMBINATION.name().concat("#").concat(charCombination));
 		}
 	}
@@ -84,7 +85,11 @@ public class PlayController extends AcceptorController {
 	}
 	
 	public void undo() {
-		this.undoController.undo();
+		if (this.tcpip == null) {
+			this.undoController.undo();
+		} else {
+			this.tcpip.send(FrameType.UNDO.name());
+		}
 	}
 	
 	public boolean redoable() {
@@ -92,7 +97,11 @@ public class PlayController extends AcceptorController {
 	}
 	
 	public void redo() {
-		this.redoController.redo();
+		if (this.tcpip == null) {
+			this.redoController.redo();
+		} else {
+			this.tcpip.send(FrameType.REDO.name());
+		}
 	}
 	
 	@Override
