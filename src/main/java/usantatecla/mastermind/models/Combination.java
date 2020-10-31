@@ -16,5 +16,4 @@ public abstract class Combination {
 	public static int getWidth() {
 		return Combination.WIDTH;
 	}
-	
 }

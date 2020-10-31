@@ -23,4 +23,8 @@ public enum Color {
 		return null;
 	}
 	
+	public static char getInitial(Color color) {
+		return PlayController.INITIALS[color.ordinal()];
+	}
+	
 }

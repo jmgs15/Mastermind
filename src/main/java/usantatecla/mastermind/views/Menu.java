@@ -1,4 +1,4 @@
-package usantatecla.mastermind.views.console;
+package usantatecla.mastermind.views;
 
 import java.util.ArrayList;
 import java.util.List;

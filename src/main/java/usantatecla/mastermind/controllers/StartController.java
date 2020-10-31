@@ -1,11 +1,13 @@
 package usantatecla.mastermind.controllers;
 
+import usantatecla.mastermind.distributed.dispatchers.FrameType;
+import usantatecla.mastermind.distributed.dispatchers.TCPIP;
 import usantatecla.mastermind.models.Session;
 
-public class StartController extends Controller implements AcceptorController {
+public class StartController extends AcceptorController {
 
-	StartController(Session session) {
-		super(session);
+    public StartController(Session session, TCPIP tcpip) {
+		super(session, tcpip);
 	}
 
 	@Override
@@ -14,6 +16,10 @@ public class StartController extends Controller implements AcceptorController {
 	}
 	
 	public void nextState() {
-		this.session.nextState();
+		if (this.tcpip == null) {
+			this.session.nextState();
+		} else {
+			this.tcpip.send(FrameType.START.name());
+		}
 	}
 }

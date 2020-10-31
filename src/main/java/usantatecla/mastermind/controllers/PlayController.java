@@ -2,12 +2,14 @@ package usantatecla.mastermind.controllers;
 
 import java.util.List;
 
+import usantatecla.mastermind.distributed.dispatchers.FrameType;
+import usantatecla.mastermind.distributed.dispatchers.TCPIP;
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.ProposedCombination;
 import usantatecla.mastermind.models.Session;
 
-public class PlayController extends Controller implements AcceptorController {
+public class PlayController extends AcceptorController {
 	
 	private ActionController actionController;
 	private UndoController undoController;
@@ -15,8 +17,8 @@ public class PlayController extends Controller implements AcceptorController {
 	
 	public static final char[] INITIALS = {'r', 'b', 'y', 'g', 'o', 'p'};
 
-	public PlayController(Session session) {
-		super(session);
+    public PlayController(Session session, TCPIP tcpip) {
+		super(session, tcpip);
 		this.actionController = new ActionController(session);
 		this.undoController = new UndoController(session);
 		this.redoController = new RedoController(session);
@@ -42,9 +44,15 @@ public class PlayController extends Controller implements AcceptorController {
 		return this.actionController.isWinner();
 	}
 	
-	public void addProposedCombination(ProposedCombination proposedCombination) {
-		this.actionController.addProposedCombination(proposedCombination);
-		this.actionController.addMemento();
+	public void addProposedCombination(String charCombination) {
+		if (this.tcpip == null) {
+			ProposedCombination proposedCombination = this.getProposedCombination(charCombination);
+			this.actionController.addProposedCombination(proposedCombination);
+			this.actionController.addMemento();
+		} else {
+			
+			this.tcpip.send(FrameType.ADD_COMBINATION.name().concat("#").concat(charCombination));
+		}
 	}
 	
 	public int getAttempts() {

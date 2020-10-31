@@ -1,7 +1,6 @@
-package usantatecla.mastermind.views.console;
+package usantatecla.mastermind.views;
 
 import usantatecla.mastermind.controllers.PlayController;
-import usantatecla.mastermind.views.MessageView;
 
 class PlayCommand extends Command {
 
