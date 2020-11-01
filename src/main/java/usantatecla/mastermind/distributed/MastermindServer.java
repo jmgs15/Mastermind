@@ -6,11 +6,12 @@ public class MastermindServer {
 
 	private Dispatcher dispatcher;
 
-	private LogicServer logic;
+	private LogicImplementationServer logic;
 
 	private MastermindServer() {
 		this.dispatcher = new Dispatcher();
-		this.logic = new LogicServer(this.dispatcher, true);
+		this.logic = new LogicImplementationServer();
+		this.logic.createDispatchers(this.dispatcher);
 	}
 
 	private void serve() {

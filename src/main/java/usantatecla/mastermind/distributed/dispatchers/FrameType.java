@@ -3,7 +3,10 @@ package usantatecla.mastermind.distributed.dispatchers;
 public enum FrameType { 
 	START,
 	ADD_COMBINATION,
+	UNDO,
+	REDO,
 	RESUME_OPTION,
+	STATE,
 	CLOSE;
 
 	public static FrameType parser(String string) {

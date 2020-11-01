@@ -2,99 +2,50 @@ package usantatecla.mastermind.controllers;
 
 import java.util.List;
 
-import usantatecla.mastermind.distributed.dispatchers.FrameType;
-import usantatecla.mastermind.distributed.dispatchers.TCPIP;
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.ProposedCombination;
 import usantatecla.mastermind.models.Session;
 
-public class PlayController extends AcceptorController {
-	
-	private ActionController actionController;
-	private UndoController undoController;
-	private RedoController redoController;
+public abstract class PlayController extends AcceptorController {
+
 	
 	public static final char[] INITIALS = {'r', 'b', 'y', 'g', 'o', 'p'};
 
-    public PlayController(Session session, TCPIP tcpip) {
-		super(session, tcpip);
-		this.actionController = new ActionController(session);
-		this.undoController = new UndoController(session);
-		this.redoController = new RedoController(session);
+    public PlayController(Session session) {
+		super(session);
 	}
 
-	public int getBlacks(int position) {
-		return this.actionController.getBlacks(position);
-	}
+	public abstract int getBlacks(int position);
 	
-	public int getWhites(int position) {
-		return this.actionController.getWhites(position);
-	}
+	public abstract int getWhites(int position);
 	
-	public List<Color> getColors(int position) {
-		return this.actionController.getColors(position);
-	}
+	public abstract List<Color> getColors(int position);
 	
-	public boolean isLooser() {
-		return this.actionController.isLooser();
-	}
+	public abstract boolean isLooser();
 	
-	public boolean isWinner() {
-		return this.actionController.isWinner();
-	}
+	public abstract boolean isWinner();
 	
-	public void addProposedCombination(String charCombination) {
-		if (this.tcpip == null) {
-			ProposedCombination proposedCombination = this.getProposedCombination(charCombination);
-			this.actionController.addProposedCombination(proposedCombination);
-			this.actionController.addMemento();
-		} else {
-			
-			this.tcpip.send(FrameType.ADD_COMBINATION.name().concat("#").concat(charCombination));
-		}
-	}
+	public abstract void addProposedCombination(String charCombination);
 	
-	public int getAttempts() {
-		return this.actionController.getAttempts();
-	}
+	public abstract int getAttempts();
 	
-	public Error isProposedCombinationValid(String characters) {
-		return this.actionController.isProposedCombinationValid(characters);
-	}
+	public abstract Error isProposedCombinationValid(String characters);
 	
-	public ProposedCombination getProposedCombination(String characters) {
-		return this.actionController.getProposedCombination(characters);
-	}
+	public abstract ProposedCombination getProposedCombination(String characters);
 
-	public int getSecretCombinationWidth() {
-		return this.actionController.getSecretCombinationWidth();
-	}
+	public abstract int getSecretCombinationWidth();
 	
-	public boolean isGameFinished() {
-		if (this.actionController.isWinner() || this.actionController.isLooser()) {
-			this.actionController.nextState();
-			return true;
-		}
-		return false;
-	}
+	public abstract boolean isGameFinished();
 	
-	public boolean undoable() {
-		return this.undoController.undoable();
-	}
+	public abstract boolean undoable();
 	
-	public void undo() {
-		this.undoController.undo();
-	}
+	public abstract void undo();
 	
-	public boolean redoable() {
-		return this.redoController.redoable();
-	}
+	public abstract boolean redoable();
 	
-	public void redo() {
-		this.redoController.redo();
-	}
-	
+	public abstract void redo();
+    
 	@Override
 	public void accept(ControllerVisitor controllersVisitor) {
 		controllersVisitor.visit(this);
