@@ -39,6 +39,13 @@ public class Game {
 	public boolean isWinner() {
 		return this.results.get(this.attempts-1).isWinner();
 	}
+	
+	public boolean isGameFinished() {
+		if (isLooser() || isWinner()) {
+			return true;
+		}
+		return false;
+	}
 
 	public int getAttempts() {
 		return this.attempts;
@@ -64,15 +71,4 @@ public class Game {
 		return this.getResult(position).getBlacks();
 	}
 	
-	public int getSecretCombinationWidth() {
-		return Combination.getWidth();
-	}
-	
-	public Error isProposedCombinationValid(String characters) {
-		return new ProposedCombination().isProposedCombinationValid(characters);
-	}
-	
-	public ProposedCombination getProposedCombination(String characters) {
-		return new ProposedCombination().getProposedCombination(characters);
-	}
 }

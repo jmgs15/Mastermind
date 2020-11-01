@@ -13,5 +13,10 @@ public abstract class Controller {
 		this.state = state;
 	}
 	
+	public void nextState() {
+		this.state.next();
+	}
+	
 	public abstract void control();
+	
 }

@@ -2,7 +2,7 @@ package usantatecla.mastermind.controllers;
 
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.State;
-import usantatecla.mastermind.views.console.ResumeView;
+import usantatecla.mastermind.views.ResumeView;
 
 public class ResumeController extends Controller {
 
@@ -20,6 +20,8 @@ public class ResumeController extends Controller {
 		boolean newGame = new ResumeView().read();
 		if (newGame) {
 			this.clearGame();
+		} else {
+			this.nextState();
 		}
 	}
 }

@@ -4,12 +4,13 @@ import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.ProposedCombination;
+import usantatecla.mastermind.models.SecretCombination;
 import usantatecla.mastermind.models.State;
 import usantatecla.mastermind.views.ErrorView;
 import usantatecla.mastermind.views.MessageView;
-import usantatecla.mastermind.views.console.ProposedCombinationView;
-import usantatecla.mastermind.views.console.ResultView;
-import usantatecla.mastermind.views.console.SecretCombinationView;
+import usantatecla.mastermind.views.ProposedCombinationView;
+import usantatecla.mastermind.views.ResultView;
+import usantatecla.mastermind.views.SecretCombinationView;
 import usantatecla.utils.Console;
 
 public class ProposalController extends Controller {
@@ -20,18 +21,22 @@ public class ProposalController extends Controller {
 		super(game, state);
 	}
 	
+
 	@Override
 	public void control() {
-		this.read();
-		new Console().writeln();
-		MessageView.ATTEMPTS.writeln(this.game.getAttempts());
-		new SecretCombinationView().writeln();
-		this.writeResults();
-		if (this.game.isWinner()) {
-			MessageView.WINNER.writeln();
-		} else if (this.game.isLooser()) {
-			MessageView.LOOSER.writeln();
-		}
+		do {
+			this.game.addProposedCombination(this.read());
+			new Console().writeln();
+			MessageView.ATTEMPTS.writeln(this.game.getAttempts());
+			new SecretCombinationView().writeln(SecretCombination.getWidth());
+			this.writeResults();
+			if (this.game.isWinner()) {
+				MessageView.WINNER.writeln();
+			} else if (this.game.isLooser()) {
+				MessageView.LOOSER.writeln();
+			}
+		} while (this.game.isGameFinished());
+		this.nextState();
 	}
 	
 	private ProposedCombination read() {

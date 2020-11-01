@@ -1,7 +1,9 @@
 package usantatecla.mastermind.controllers;
 
 import usantatecla.mastermind.models.Game;
+import usantatecla.mastermind.models.SecretCombination;
 import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.views.StartView;
 
 public class StartController extends Controller {
 
@@ -10,7 +12,8 @@ public class StartController extends Controller {
 	}
 
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
+	public void control() {
+		new StartView().write(SecretCombination.getWidth());
+		this.nextState();
 	}
 }

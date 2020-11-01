@@ -1,13 +1,12 @@
-package usantatecla.mastermind.views.console;
+package usantatecla.mastermind.views;
 
-import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
-class StartView extends WithConsoleView {
+public class StartView extends WithConsoleView {
 
-	void interact() {
+	public void write(int combinationWidth) {
 		MessageView.TITLE.writeln();
-		new SecretCombinationView().writeln();
+		new SecretCombinationView().writeln(combinationWidth);
 	}
 
 }

@@ -1,6 +1,5 @@
-package usantatecla.mastermind.views.console;
+package usantatecla.mastermind.views;
 
-import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.YesNoDialog;
 
 public class ResumeView {
