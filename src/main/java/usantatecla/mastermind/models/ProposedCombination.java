@@ -1,5 +1,6 @@
 package usantatecla.mastermind.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProposedCombination extends Combination {
@@ -43,12 +44,13 @@ public class ProposedCombination extends Combination {
 		return error;
 	}
 	
-	public ProposedCombination getProposedCombination(String characters) {
-		ProposedCombination proposedCombination = new ProposedCombination();
+	public void setProposedCombination(String characters) {
+		List<Color> colors = new ArrayList<>();
 		for (int i = 0; i < characters.length(); i++) {
 			Color color = Color.getInstance(characters.charAt(i));
-			proposedCombination.getColors().add(color);
+			colors.add(color);
 		}
-		return proposedCombination;
+		this.colors.clear();
+		this.colors.addAll(colors);
 	}
 }

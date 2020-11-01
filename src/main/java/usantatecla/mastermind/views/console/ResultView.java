@@ -1,19 +1,11 @@
 package usantatecla.mastermind.views.console;
 
-import usantatecla.mastermind.controllers.ProposalController;
 import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
-class ResultView extends WithConsoleView {
-	
-	private ProposalController proposalController;
+public class ResultView extends WithConsoleView {
 
-	public ResultView(ProposalController proposalController) {
-		this.proposalController = proposalController;
+	public void writeln(int blacks, int whites) {
+		MessageView.RESULT.writeln(blacks, whites);
 	}
-
-	void writeln(int position) {
-		MessageView.RESULT.writeln(this.proposalController.getBlacks(position), this.proposalController.getWhites(position));
-	}
-
 }

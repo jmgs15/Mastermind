@@ -1,12 +1,16 @@
 package usantatecla.mastermind.controllers;
 
-import java.util.List;
-
 import usantatecla.mastermind.models.Color;
 import usantatecla.mastermind.models.Error;
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.ProposedCombination;
 import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.views.ErrorView;
+import usantatecla.mastermind.views.MessageView;
+import usantatecla.mastermind.views.console.ProposedCombinationView;
+import usantatecla.mastermind.views.console.ResultView;
+import usantatecla.mastermind.views.console.SecretCombinationView;
+import usantatecla.utils.Console;
 
 public class ProposalController extends Controller {
 	
@@ -16,56 +20,42 @@ public class ProposalController extends Controller {
 		super(game, state);
 	}
 	
-	public int getBlacks(int position) {
-		return this.game.getBlacks(position);
-	}
-	
-	public int getWhites(int position) {
-		return this.game.getWhites(position);
-	}
-	
-	public List<Color> getColors(int position) {
-		return this.game.getColors(position);
-	}
-	
-	public boolean isLooser() {
-		boolean isLooser = this.game.isLooser();
-		if (isLooser) {
-			this.state.next();
-		}
-		return isLooser;
-	}
-	
-	public boolean isWinner() {
-		boolean isWinner = this.game.isWinner(); 
-		if (isWinner) {
-			this.state.next();
-		}
-		return isWinner;
-	}
-	
-	public void addProposedCombination(ProposedCombination proposedCombination) {
-		this.game.addProposedCombination(proposedCombination);
-	}
-	
-	public int getAttempts() {
-		return this.game.getAttempts();
-	}
-	
-	public Error isProposedCombinationValid(String characters) {
-		return this.game.isProposedCombinationValid(characters);
-	}
-	
-	public ProposedCombination getProposedCombination(String characters) {
-		return this.game.getProposedCombination(characters);
-	}
-
-	public int getSecretCombinationWidth() {
-		return this.game.getSecretCombinationWidth();
-	}
-
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
+	public void control() {
+		this.read();
+		new Console().writeln();
+		MessageView.ATTEMPTS.writeln(this.game.getAttempts());
+		new SecretCombinationView().writeln();
+		this.writeResults();
+		if (this.game.isWinner()) {
+			MessageView.WINNER.writeln();
+		} else if (this.game.isLooser()) {
+			MessageView.LOOSER.writeln();
+		}
+	}
+	
+	private ProposedCombination read() {
+		ProposedCombination proposedCombination = new ProposedCombination();
+		Error error;
+		do {
+			error = null;
+			String characters = new ProposedCombinationView().read();
+			error = proposedCombination.isProposedCombinationValid(characters);
+			if (error != null) {
+				new ErrorView(error).writeln();
+			} else {
+				proposedCombination.setProposedCombination(characters);
+			}
+		} while (error != null);
+		return proposedCombination;
+	}
+	
+	private void writeResults() {
+		for (int i = 0; i < this.game.getAttempts(); i++) {
+			for (Color color: this.game.getColors(i)) {
+				new ProposedCombinationView().writeColor(ProposalController.INITIALS[color.ordinal()]);
+			}
+			new ResultView().writeln(this.game.getBlacks(i), this.game.getWhites(i));
+		}
 	}
 }

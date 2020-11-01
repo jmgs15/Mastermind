@@ -2,6 +2,7 @@ package usantatecla.mastermind.controllers;
 
 import usantatecla.mastermind.models.Game;
 import usantatecla.mastermind.models.State;
+import usantatecla.mastermind.views.console.ResumeView;
 
 public class ResumeController extends Controller {
 
@@ -9,13 +10,16 @@ public class ResumeController extends Controller {
 		super(game, state);
 	}
 	
-	public void clearGame() {
+	private void clearGame() {
 		this.game.clear();
 		this.state.reset();
 	}
 
 	@Override
-	public void accept(ControllersVisitor controllersVisitor) {
-		controllersVisitor.visit(this);
+	public void control() {
+		boolean newGame = new ResumeView().read();
+		if (newGame) {
+			this.clearGame();
+		}
 	}
 }

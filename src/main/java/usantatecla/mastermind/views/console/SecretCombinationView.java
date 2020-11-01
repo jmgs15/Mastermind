@@ -4,9 +4,9 @@ import usantatecla.mastermind.models.SecretCombination;
 import usantatecla.mastermind.views.MessageView;
 import usantatecla.utils.WithConsoleView;
 
-class SecretCombinationView extends WithConsoleView {
+public class SecretCombinationView extends WithConsoleView {
 
-	void writeln() {
+	public void writeln() {
 		for (int i = 0; i < SecretCombination.getWidth(); i++) {
 			MessageView.SECRET.write();
 		}
